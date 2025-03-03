@@ -1,21 +1,20 @@
 const express=require('express')
 const router=express.Router();
 const { body }=require('express-validator')
-const userController = require('../controllers/userController');
+const captainController = require('../controllers/captainController');
 const authMiddleWare=require('../middleware/authMiddle');
 
-router.post('/register',[
+router.post('/registerCaptain',[
     body('email').isEmail().withMessage('Invalid Email'),
     body('fullname.firstname').isLength({min:3}).withMessage('Enter correct name'),
     body('password').isLength({min:6}).withMessage('Password must be 6 char long')
-],userController.registerUser)
+],captainController.registerCaptain)
 
-router.post('/login',[
+router.post('/loginCaptain',[
     body('email').isEmail().withMessage('Invalid Email'),
     body('password').isLength({min:6}).withMessage('Password must be 6 char long')
-],userController.loginUser)
+],captainController.loginCaptain)
 
-router.get('/profile',authMiddleWare.authUser,userController.getUserProfile)
-router.get('/logout',authMiddleWare.authUser,userController.logoutUser)
-
+router.get('/getCaptainprofile',authMiddleWare.authCaptain,captainController.captainProfile)
+router.get('/logoutCaptain',authMiddleWare.authCaptain,captainController.logoutcaptain)
 module.exports=router;

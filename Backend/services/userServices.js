@@ -1,3 +1,5 @@
+const captainModel = require('../models/captainModel');
+
 const userModel=require('../models/userModel');
 
 module.exports.createUser=async({
@@ -13,4 +15,6 @@ module.exports.createUser=async({
     })
     return user;
 }
+
+
 
